@@ -20,7 +20,7 @@ export function App() {
 
   return (
     <div id="container" className="w-screen h-screen px-4 pt-20">
-      <div id="containerbox" className="max-w-[43.75rem] h-[28.75rem] mx-auto">
+      <div id="containerbox" className="max-w-[43.75rem] h-[29.375rem] mx-auto">
         <div className="text-[#29221f] text-3xl my-4">
           <strong className="ml-4 md:ml-10">Busca cep!</strong>
           <div className="flex flex-col">
@@ -32,33 +32,45 @@ export function App() {
                 placeholder="Ex: 60333459"
               ></input>
               <button
-                className="bg-white ml-4 w-[2.8125rem] h-[2.25rem] rounded-lg text-slate-400 md:ml-4 md:mt-9"
+                className="bg-white w-[2.8125rem] h-[2.25rem] rounded-lg text-slate-400 ml-4 md:mt-9"
                 onClick={Busca}
               >
                 <BiSearchAlt2 className="mx-auto text-[#29221f]" />
               </button>
             </div>
+            <label className="text-base ml-9 max-[23.4375rem]:ml-4 max-[48rem]:mt-4">
+              Endereço:
+            </label>
             <input
               type="text"
-              className="my-4 w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f] md:mt-8"
+              className="w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
               value={res ? `${res?.address}` : ""}
               readOnly
             />
+            <label className="text-base ml-9 mt-2 max-[23.4375rem]:ml-4">
+              Bairro:
+            </label>
             <input
               type="text"
-              className="my-4 w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
+              className="w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
               value={res ? `${res?.district}` : ""}
               readOnly
             />
+            <label className="text-base ml-9 mt-2 max-[23.4375rem]:ml-4">
+              Cidade:
+            </label>
             <input
               type="text"
-              className="my-4 w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
+              className="w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
               value={res ? `${res?.city}` : ""}
               readOnly
             />
+            <label className="text-base ml-9 mt-2 max-[23.4375rem]:ml-4">
+              Estado:
+            </label>
             <input
               type="text"
-              className="my-4 w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
+              className="w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
               value={res ? `${res?.state}` : ""}
               readOnly
             />

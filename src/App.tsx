@@ -15,63 +15,74 @@ export function App() {
     e.preventDefault();
     axios.get(`https://cep.awesomeapi.com.br/json/${cep}`).then((response) => {
       setRes(response.data);
+      console.log(response.data);
     });
   };
 
   return (
-    <div id="container" className="w-screen h-screen px-4 pt-20">
-      <div id="containerbox" className="max-w-[43.75rem] h-[29.375rem] mx-auto">
-        <div className="text-[#29221f] text-3xl my-4">
-          <strong className="ml-4 md:ml-10">Busca cep!</strong>
+    <div
+      id="container"
+      className="flex flex-col justify-center items-center h-screen bg-gradient-to-r from-sky-900 to-indigo-800 shadow-3xl"
+    >
+      <div className="flex flex-col isolate aspect-video p-14 rounded-xl bg-white/20 shadow-lg ring-1 ring-black/5">
+        <strong className="text-4xl py-6">Busca cep!</strong>
+        <div className="py-4">
+          <input
+            className="rounded-md text-[1.375rem] text-[#29221f] text-center h-8"
+            onChange={handleChange}
+            placeholder="Entre com o cep aqui"
+          ></input>
+          <button
+            className="bg-white w-[2.0625rem] rounded-full text-slate-400 ml-4 h-8"
+            onClick={Busca}
+          >
+            <BiSearchAlt2 className="mx-auto text-[#29221f]" />
+          </button>
+        </div>
+        <div className="flex">
           <div className="flex flex-col">
-            <div className="flex flex-col md:flex-row">
-              <input
-                id="inputCep"
-                className="my-4 rounded-md w-[70%] ml-4 text-[1.375rem] text-[#29221f] text-center md:ml-10 md:w-[35%] md:mt-9"
-                onChange={handleChange}
-                placeholder="Ex: 60333459"
-              ></input>
-              <button
-                className="bg-white w-[2.8125rem] h-[2.25rem] rounded-lg text-slate-400 ml-4 md:mt-9"
-                onClick={Busca}
-              >
-                <BiSearchAlt2 className="mx-auto text-[#29221f]" />
-              </button>
-            </div>
-            <label className="text-base ml-9 max-[23.4375rem]:ml-4 max-[48rem]:mt-4">
-              Endereço:
-            </label>
+            <label className="text-base text-white">Endereço:</label>
             <input
               type="text"
-              className="w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
+              className="h-8 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
               value={res ? `${res?.address}` : ""}
               readOnly
             />
-            <label className="text-base ml-9 mt-2 max-[23.4375rem]:ml-4">
-              Bairro:
-            </label>
+            <label className="text-base text-white mt-2">Bairro:</label>
             <input
               type="text"
-              className="w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
+              className="h-8 w-96 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
               value={res ? `${res?.district}` : ""}
               readOnly
             />
-            <label className="text-base ml-9 mt-2 max-[23.4375rem]:ml-4">
-              Cidade:
-            </label>
+            <label className="text-base text-white mt-2">Código do Município no IBGE:</label>
             <input
               type="text"
-              className="w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
+              className="h-8 w-96 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
+              value={res ? `${res?.city_ibge}` : ""}
+              readOnly
+            />
+          </div>
+          <div className="flex flex-col ml-3">
+            <label className="text-base text-white">Cidade:</label>
+            <input
+              type="text"
+              className="h-8 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
               value={res ? `${res?.city}` : ""}
               readOnly
             />
-            <label className="text-base ml-9 mt-2 max-[23.4375rem]:ml-4">
-              Estado:
-            </label>
+            <label className="text-base text-white mt-2">Estado:</label>
             <input
               type="text"
-              className="w-[90%] mx-auto h-10 rounded-md focus:outline-none p-4 font-bold text-[1.125rem] text-[#29221f]"
+              className="h-8 w-96 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
               value={res ? `${res?.state}` : ""}
+              readOnly
+            />
+            <label className="text-base text-white mt-2">Latitude / Longitude:</label>
+            <input
+              type="text"
+              className="h-8 w-96 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
+              value={res ? `${res?.lat} / ${res?.lng}` : ""}
               readOnly
             />
           </div>

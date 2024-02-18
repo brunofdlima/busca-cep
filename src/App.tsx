@@ -49,12 +49,12 @@ export function App() {
             value={res ? `${res?.district}` : ""}
             labelforinput="Bairro:"
           />
+          <Input value={res ? `${res?.city}` : ""} labelforinput="Cidade:" />
+          <Input value={res ? `${res?.state}` : ""} labelforinput="Estado:" />
           <Input
             value={res ? `${res?.city_ibge}` : ""}
             labelforinput="Código do Município no IBGE:"
           />
-          <Input value={res ? `${res?.city}` : ""} labelforinput="Cidade:" />
-          <Input value={res ? `${res?.state}` : ""} labelforinput="Estado:" />
           <Input
             value={res ? `${res?.lat} / ${res?.lng}` : ""}
             labelforinput="Latitude / Longitude:"

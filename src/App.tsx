@@ -3,6 +3,11 @@ import { useState } from "react";
 
 import { BiSearchAlt2 } from "react-icons/bi";
 
+import { Input } from "./Components/Input";
+import { Container } from "./Components/Container";
+import { Title } from "./Components/Title";
+import { FormContainer } from "./Components/FormContainer";
+
 export function App() {
   const [cep, setCep] = useState();
   const [res, setRes] = useState<any>();
@@ -15,17 +20,13 @@ export function App() {
     e.preventDefault();
     axios.get(`https://cep.awesomeapi.com.br/json/${cep}`).then((response) => {
       setRes(response.data);
-      console.log(response.data);
     });
   };
 
   return (
-    <div
-      id="container"
-      className="flex flex-col justify-center items-center h-screen bg-gradient-to-r from-sky-900 to-indigo-800 shadow-3xl"
-    >
-      <div className="flex flex-col isolate aspect-video p-14 rounded-xl bg-white/20 shadow-lg ring-1 ring-black/5">
-        <strong className="text-4xl py-6">Busca cep!</strong>
+    <Container>
+      <FormContainer>
+        <Title title="Busca cep!" />
         <div className="py-4">
           <input
             className="rounded-md text-[1.375rem] text-[#29221f] text-center h-8"
@@ -39,55 +40,27 @@ export function App() {
             <BiSearchAlt2 className="mx-auto text-[#29221f]" />
           </button>
         </div>
-        <div className="flex">
-          <div className="flex flex-col">
-            <label className="text-base text-white">Endereço:</label>
-            <input
-              type="text"
-              className="h-8 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
-              value={res ? `${res?.address}` : ""}
-              readOnly
-            />
-            <label className="text-base text-white mt-2">Bairro:</label>
-            <input
-              type="text"
-              className="h-8 w-96 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
-              value={res ? `${res?.district}` : ""}
-              readOnly
-            />
-            <label className="text-base text-white mt-2">Código do Município no IBGE:</label>
-            <input
-              type="text"
-              className="h-8 w-96 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
-              value={res ? `${res?.city_ibge}` : ""}
-              readOnly
-            />
-          </div>
-          <div className="flex flex-col ml-3">
-            <label className="text-base text-white">Cidade:</label>
-            <input
-              type="text"
-              className="h-8 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
-              value={res ? `${res?.city}` : ""}
-              readOnly
-            />
-            <label className="text-base text-white mt-2">Estado:</label>
-            <input
-              type="text"
-              className="h-8 w-96 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
-              value={res ? `${res?.state}` : ""}
-              readOnly
-            />
-            <label className="text-base text-white mt-2">Latitude / Longitude:</label>
-            <input
-              type="text"
-              className="h-8 w-96 rounded-md focus:outline-none font-bold text-[1.125rem] text-[#29221f] text-center"
-              value={res ? `${res?.lat} / ${res?.lng}` : ""}
-              readOnly
-            />
-          </div>
+        <div className="grid grid-cols-1 switch:grid-cols-2">
+          <Input
+            value={res ? `${res?.address}` : ""}
+            labelforinput="Endereço:"
+          />
+          <Input
+            value={res ? `${res?.district}` : ""}
+            labelforinput="Bairro:"
+          />
+          <Input
+            value={res ? `${res?.city_ibge}` : ""}
+            labelforinput="Código do Município no IBGE:"
+          />
+          <Input value={res ? `${res?.city}` : ""} labelforinput="Cidade:" />
+          <Input value={res ? `${res?.state}` : ""} labelforinput="Estado:" />
+          <Input
+            value={res ? `${res?.lat} / ${res?.lng}` : ""}
+            labelforinput="Latitude / Longitude:"
+          />
         </div>
-      </div>
-    </div>
+      </FormContainer>
+    </Container>
   );
 }

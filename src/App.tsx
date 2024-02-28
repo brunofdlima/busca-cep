@@ -18,10 +18,13 @@ export function App() {
 
   const Busca = (e: any) => {
     e.preventDefault();
+
     axios.get(`https://cep.awesomeapi.com.br/json/${cep}`).then((response) => {
       setRes(response.data);
     });
   };
+
+  console.log(res)
 
   return (
     <Container>

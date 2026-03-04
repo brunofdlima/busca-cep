@@ -29,7 +29,7 @@ export function App() {
   return (
     <Container>
       <FormContainer>
-        <Title title="Busca cep!" />
+        <Title title="Find !" />
         <div className="py-4">
           <input
             className="rounded-md text-[1.375rem] text-[#29221f] text-center h-8"
